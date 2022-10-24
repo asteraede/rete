@@ -191,6 +191,13 @@ protected:
         } else {
         }
         request.append(this->cr());
+        if (!(err = this->on_request_optarg_set(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    virtual int on_request_optarg_set
+    (string_t& request, const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
         return err;
     }
 

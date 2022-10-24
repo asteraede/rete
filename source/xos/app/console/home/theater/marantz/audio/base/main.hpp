@@ -52,7 +52,10 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    maint(): run_(0) {
+    maint()
+    : run_(0),
+      volume_up_("MVUP"), volume_down_("MVDOWN"), volume_level_("MV"), volume_("MV?"),
+      power_off_("PWSTANDBY"), power_on_("PWON"), power_state_("PW"), power_("PW?") {
     }
     virtual ~maint() {
     }
@@ -78,7 +81,85 @@ protected:
         return err;
     }
 
+    /// ...volume_up_option...
+    virtual int on_set_volume_up_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->volume_up_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...volume_down_option...
+    virtual int on_set_volume_down_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->volume_down_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...volume_option...
+    virtual int on_set_volume_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            request.assign(this->volume_level_);
+        } else {
+            request.assign(this->volume_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+
+    /// ...power_on_option...
+    virtual int on_set_power_on_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+            string_t& request = this->request();
+            request.assign(this->power_on_);
+            if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+            }
+        }
+        return err;
+    }
+    /// ...power_off_option...
+    virtual int on_set_power_off_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+            string_t& request = this->request();
+            request.assign(this->power_off_);
+            if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+            }
+        }
+        return err;
+    }
+    /// ...power_option...
+    virtual int on_set_power_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            request.assign(this->power_state_);
+        } else {
+            request.assign(this->power_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+
 protected:
+    string_t volume_up_, volume_down_, volume_level_, volume_;
+    string_t power_off_, power_on_, power_state_, power_;
 }; /// class maint
 typedef maint<> main;
 

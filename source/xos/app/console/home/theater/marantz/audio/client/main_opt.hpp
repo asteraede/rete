@@ -66,10 +66,12 @@ namespace client {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::home::audio::main_optt
+<class TExtends = xos::app::console::home::theater::marantz::audio::base::maint
+ <xos::app::console::home::theater::marantz::audio::base::main_optt
+ <xos::app::console::home::audio::main_optt
  <xos::app::console::home::base::main_optt
  <xos::app::console::network::sockets::protocol::telnet::client::maint
- <xos::app::console::network::sockets::protocol::telnet::client::main_optt<> > > >, 
+ <xos::app::console::network::sockets::protocol::telnet::client::main_optt<> > > > > >, 
  class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {

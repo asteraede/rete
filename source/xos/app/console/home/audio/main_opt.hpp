@@ -159,11 +159,8 @@ protected:
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
-        if ((optarg) && (optarg[0])) {
-            if (!(err = on_set_volume_up_option(optarg, optind, argc, argv, env))) {
-                if (!(err = on_volume_up_option_set(optarg, optind, argc, argv, env))) {
-                } else {
-                }
+        if (!(err = on_set_volume_up_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_volume_up_option_set(optarg, optind, argc, argv, env))) {
             } else {
             }
         } else {
@@ -197,11 +194,8 @@ protected:
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
-        if ((optarg) && (optarg[0])) {
-            if (!(err = on_set_volume_down_option(optarg, optind, argc, argv, env))) {
-                if (!(err = on_volume_down_option_set(optarg, optind, argc, argv, env))) {
-                } else {
-                }
+        if (!(err = on_set_volume_down_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_volume_down_option_set(optarg, optind, argc, argv, env))) {
             } else {
             }
         } else {
@@ -235,11 +229,8 @@ protected:
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
-        if ((optarg) && (optarg[0])) {
-            if (!(err = on_set_volume_option(optarg, optind, argc, argv, env))) {
-                if (!(err = on_volume_option_set(optarg, optind, argc, argv, env))) {
-                } else {
-                }
+        if (!(err = on_set_volume_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_volume_option_set(optarg, optind, argc, argv, env))) {
             } else {
             }
         } else {

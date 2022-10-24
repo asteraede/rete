@@ -261,6 +261,11 @@ protected:
         run_ = &derives::all_sockets_run;
         return err;
     }
+    virtual int unset_sockets_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        run_ = 0;
+        return err;
+    }
     virtual int on_set_sockets_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         return err;
@@ -297,6 +302,17 @@ protected:
                 sockets_run_ = &derives::all_connect_run;
             }
         }
+        return err;
+    }
+    virtual int unset_connect_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = unset_sockets_run(argc, argv, env))) {
+            sockets_run_ = 0;
+        }
+        return err;
+    }
+    virtual int on_set_connect_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
         return err;
     }
 
@@ -337,6 +353,17 @@ protected:
         }
         return err;
     }
+    virtual int unset_accept_one_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = unset_sockets_run(argc, argv, env))) {
+            sockets_run_ = 0;
+        }
+        return err;
+    }
+    virtual int on_set_accept_one_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        return err;
+    }
 
     /// ...accept_run
     virtual int accept_run(int argc, char_t** argv, char_t** env) {
@@ -369,6 +396,17 @@ protected:
                 sockets_run_ = &derives::all_accept_run;
             }
         }
+        return err;
+    }
+    virtual int unset_accept_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = unset_sockets_run(argc, argv, env))) {
+            sockets_run_ = 0;
+        }
+        return err;
+    }
+    virtual int on_set_accept_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
         return err;
     }
 

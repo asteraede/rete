@@ -56,7 +56,7 @@ public:
     : run_(0),
       next_track_("#NXT"), previous_track_("#PRE"), track_("#QTK"),
       start_play_("#PLA"), stop_play_("#STP"), pause_play_("#PAU"), play_("#QPL"),
-      power_off_("#POF"), power_on_("#PON"), power_("#QPW") {
+      power_off_("#POF"), power_on_("#PON"), power_toggle_("#POW"), power_("#QPW") {
     }
     virtual ~maint() {
     }
@@ -160,7 +160,7 @@ protected:
 protected:
     string_t next_track_, previous_track_, track_;
     string_t start_play_, stop_play_, pause_play_, play_;
-    string_t power_off_, power_on_, power_;
+    string_t power_off_, power_on_, power_toggle_, power_;
 }; /// class maint
 typedef maint<> main;
 

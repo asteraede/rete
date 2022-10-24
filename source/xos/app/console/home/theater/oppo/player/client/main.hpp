@@ -78,6 +78,25 @@ protected:
         return err;
     }
 
+    /// ...request_optarg...
+    virtual int on_request_optarg_set
+    (string_t& request, const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_connect_run(argc, argv, env))) {
+        }
+        return err;
+    }
+
+    /// ...output_request_run
+    virtual int on_set_output_request_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = extends::on_set_output_request_run(argc, argv, env))) {
+            if (!(err = this->unset_connect_run(argc, argv, env))) {
+            }
+        }
+        return err;
+    }
+
 protected:
 }; /// class maint
 typedef maint<> main;
