@@ -13,48 +13,48 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: oppo.pri
+#   File: telnetd.pri
 #
 # Author: $author$
-#   Date: 10/22/2022
+#   Date: 10/24/2022
 #
-# generic QtCreator project .pri file for framework rete executable oppo
+# generic QtCreator project .pri file for framework rete executable telnetd
 ########################################################################
 
 ########################################################################
-# oppo
+# telnetd
 
-# oppo TARGET
+# telnetd TARGET
 #
-oppo_TARGET = oppo
+telnetd_TARGET = telnetd
 
-# oppo INCLUDEPATH
+# telnetd INCLUDEPATH
 #
-oppo_INCLUDEPATH += \
+telnetd_INCLUDEPATH += \
 $${rete_INCLUDEPATH} \
 
-# oppo DEFINES
+# telnetd DEFINES
 #
-oppo_DEFINES += \
+telnetd_DEFINES += \
 $${rete_DEFINES} \
 DEFAULT_LOGGING_LEVELS_ERROR \
 XOS_CONSOLE_MAIN_MAIN \
 
 ########################################################################
-# oppo OBJECTIVE_HEADERS
+# telnetd OBJECTIVE_HEADERS
 #
-#oppo_OBJECTIVE_HEADERS += \
-#$${RETE_SRC}/xos/app/console/oppo/main.hh \
+#telnetd_OBJECTIVE_HEADERS += \
+#$${RETE_SRC}/xos/app/console/telnetd/main.hh \
 
-# oppo OBJECTIVE_SOURCES
+# telnetd OBJECTIVE_SOURCES
 #
-#oppo_OBJECTIVE_SOURCES += \
-#$${RETE_SRC}/xos/app/console/oppo/main.mm \
+#telnetd_OBJECTIVE_SOURCES += \
+#$${RETE_SRC}/xos/app/console/telnetd/main.mm \
 
 ########################################################################
-# oppo HEADERS
+# telnetd HEADERS
 #
-oppo_HEADERS += \
+telnetd_HEADERS += \
 $${RETE_SRC}/xos/network/sockets/interfaces.hpp \
 $${RETE_SRC}/xos/network/sockets/os/interfaces.hpp \
 \
@@ -78,32 +78,24 @@ $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/client/main_opt.hpp
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/client/main.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/server/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/server/main.hpp \
-\
-$${RETE_SRC}/xos/app/console/home/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/player/main_opt.hpp \
-\
-$${RETE_SRC}/xos/app/console/home/theater/oppo/player/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/theater/oppo/player/base/main.hpp \
-$${RETE_SRC}/xos/app/console/home/theater/oppo/player/client/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/theater/oppo/player/client/main.hpp \
 
-# oppo SOURCES
+# telnetd SOURCES
 #
-oppo_SOURCES += \
+telnetd_SOURCES += \
 $${RETE_SRC}/xos/network/sockets/os/interfaces.cpp \
 \
-$${RETE_SRC}/xos/app/console/home/theater/oppo/player/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/home/theater/oppo/player/client/main.cpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/server/main_opt.cpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/server/main.cpp \
 
 ########################################################################
-# oppo FRAMEWORKS
+# telnetd FRAMEWORKS
 #
-oppo_FRAMEWORKS += \
+telnetd_FRAMEWORKS += \
 $${rete_FRAMEWORKS} \
 
-# oppo LIBS
+# telnetd LIBS
 #
-oppo_LIBS += \
+telnetd_LIBS += \
 $${rete_LIBS} \
 
 ########################################################################
