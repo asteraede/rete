@@ -52,7 +52,11 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    maint(): run_(0) {
+    maint()
+    : run_(0),
+      next_track_("#NXT"), previous_track_("#PRE"), track_("#QTK"),
+      start_play_("#PLA"), stop_play_("#STP"), pause_play_("#PAU"), play_("#QPL"),
+      power_off_("#POF"), power_on_("#PON"), power_("#QPW") {
     }
     virtual ~maint() {
     }
@@ -78,7 +82,85 @@ protected:
         return err;
     }
 
+    /// ...next_track_option...
+    virtual int on_set_next_track_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->next_track_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...previous_track_option...
+    virtual int on_set_previous_track_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->previous_track_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...track_option...
+    virtual int on_set_track_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            request.assign(this->next_track_);
+        } else {
+            request.assign(this->track_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+
+    /// ...power_on_option...
+    virtual int on_set_power_on_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+            string_t& request = this->request();
+            request.assign(this->power_on_);
+            if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+            }
+        }
+        return err;
+    }
+    /// ...power_off_option...
+    virtual int on_set_power_off_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+            string_t& request = this->request();
+            request.assign(this->power_off_);
+            if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+            }
+        }
+        return err;
+    }
+    /// ...power_option...
+    virtual int on_set_power_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+            string_t& request = this->request();
+            request.assign(this->power_);
+            if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+            }
+        }
+        return err;
+    }
+
 protected:
+    string_t next_track_, previous_track_, track_;
+    string_t start_play_, stop_play_, pause_play_, play_;
+    string_t power_off_, power_on_, power_;
 }; /// class maint
 typedef maint<> main;
 

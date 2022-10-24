@@ -16,46 +16,62 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 10/22/2022
+///   Date: 10/23/2022
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPT_HPP
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPT_HPP
+#ifndef XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPT_HPP
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPT_HPP
 
-#include "xos/app/console/network/sockets/server/main.hpp"
-#include "xos/app/console/network/sockets/protocol/telnet/base/main.hpp"
-
-///////////////////////////////////////////////////////////////////////
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
-
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
+#include "xos/app/console/network/sockets/protocol/telnet/client/main.hpp"
+#include "xos/app/console/home/theater/oppo/player/base/main.hpp"
+#include "xos/app/console/home/player/main_opt.hpp"
 
 ///////////////////////////////////////////////////////////////////////
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_CHARS \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_SERVER_MAIN_OPTIONS_CHARS
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_ON_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OFF_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OPTVAL_S \
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_OPTIONS \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_SERVER_MAIN_OPTIONS_OPTIONS
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTION \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTION \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTION \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_ON_OPTION \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OFF_OPTION \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OPTION \
 
 ///////////////////////////////////////////////////////////////////////
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_ARGS 0
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_ARGV 0,
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_CHARS \
+   XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_CHARS_EXTEND \
+   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_CLIENT_MAIN_OPTIONS_CHARS
+
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_OPTIONS \
+   XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_OPTIONS_EXTEND \
+   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_CLIENT_MAIN_OPTIONS_OPTIONS
+
+///////////////////////////////////////////////////////////////////////
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_ARGS 0
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_ARGV 0,
 
 namespace xos {
 namespace app {
 namespace console {
-namespace network {
-namespace sockets {
-namespace protocol {
-namespace telnet {
-namespace server {
+namespace home {
+namespace theater {
+namespace oppo {
+namespace player {
+namespace client {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::network::sockets::protocol::telnet::base::maint
- <xos::app::console::network::sockets::protocol::telnet::base::main_optt
- <xos::app::console::network::sockets::server::maint<> > >, 
+<class TExtends = xos::app::console::home::theater::oppo::player::base::maint
+ <xos::app::console::home::theater::oppo::player::base::main_optt
+ <xos::app::console::home::player::main_optt
+ <xos::app::console::home::base::main_optt
+ <xos::app::console::network::sockets::protocol::telnet::client::maint
+ <xos::app::console::network::sockets::protocol::telnet::client::main_optt<> > > > > >, 
  class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {
@@ -120,9 +136,9 @@ protected:
         return chars;
     }
     virtual const char_t* options(const struct option*& longopts) {
-        static const char_t* chars = XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_CHARS;
+        static const char_t* chars = XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_CHARS;
         static struct option optstruct[]= {
-            XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPTIONS_OPTIONS
+            XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_OPTIONS
             {0, 0, 0, 0}};
         longopts = optstruct;
         return chars;
@@ -130,9 +146,9 @@ protected:
 
     /// ...argument...
     virtual const char_t* arguments(const char_t**& argv) {
-        static const char_t* _args = XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_ARGS;
+        static const char_t* _args = XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_ARGS;
         static const char_t* _argv[] = {
-            XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_ARGV
+            XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_ARGV
             0};
         argv = _argv;
         return _args;
@@ -142,13 +158,13 @@ protected:
 }; /// class main_optt
 typedef main_optt<> main_opt;
 
-} /// namespace server
-} /// namespace telnet
-} /// namespace protocol
-} /// namespace sockets
-} /// namespace network
+} /// namespace client
+} /// namespace player
+} /// namespace oppo
+} /// namespace theater
+} /// namespace home
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_TELNET_SERVER_MAIN_OPT_HPP
+#endif /// ndef XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPT_HPP

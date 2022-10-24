@@ -65,7 +65,7 @@ public:
       connect_port_(connect_portno), 
       relay_port_(relay_portno),
       default_request_("hello\r\n\r\n\r\n"), default_response_(default_request_), 
-      request_(default_request_), response_(default_response_) {
+      request_(default_request_), response_(default_response_), cr_("\r") {
     }
     virtual ~maint() {
     }
@@ -87,6 +87,27 @@ protected:
             err = (this->*run_)(argc, argv, env);
         } else {
             err = extends::run(argc, argv, env);
+        }
+        return err;
+    }
+
+    /// ...output_request_run
+    virtual int output_request_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        size_t length = 0;
+        const char_t* chars = 0;
+        if ((chars = this->request_chars(length))) {
+            this->outln(chars, length);
+        }
+        return err;
+    }
+    /// ...output_response_run
+    virtual int output_response_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        size_t length = 0;
+        const char_t* chars = 0;
+        if ((chars = this->response_chars(length))) {
+            this->outln(chars, length);
         }
         return err;
     }
@@ -146,6 +167,9 @@ protected:
     virtual string_t& response() const {
         return (string_t&)response_;
     }
+    virtual string_t& cr() const {
+        return (string_t&)cr_;
+    }
     
     /// ...port
     virtual short& accept_port() const {
@@ -158,9 +182,21 @@ protected:
         return (short&)relay_port_;
     }
 
+    /// ...request_optarg...
+    virtual int on_set_request_optarg
+    (string_t& request, const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+            request.append(optarg);
+        } else {
+        }
+        request.append(this->cr());
+        return err;
+    }
+
 protected:
     short accept_port_, connect_port_, relay_port_;
-    string_t default_request_, default_response_, request_, response_;
+    string_t default_request_, default_response_, request_, response_, cr_;
 }; /// class maint
 typedef maint<> main;
 

@@ -26,8 +26,8 @@
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPT "next-track"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTARG_RESULT 0
-#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTARG ""
-#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTUSE ""
+#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTARG "[{ 0..n }]"
+#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTUSE "next track"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTVAL_S "X::"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTVAL_C 'X'
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTION \
@@ -39,8 +39,8 @@
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPT "previous-track"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTARG_RESULT 0
-#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTARG ""
-#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTUSE ""
+#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTARG "[{ 0..n }]"
+#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTUSE "previous track"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTVAL_S "E::"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTVAL_C 'E'
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTION \
@@ -52,8 +52,8 @@
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPT "track"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTARG_RESULT 0
-#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTARG ""
-#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTUSE ""
+#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTARG "[{ 0..n }]"
+#define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTUSE "track"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTVAL_S "K::"
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTVAL_C 'K'
 #define XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTION \
@@ -159,11 +159,8 @@ protected:
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
-        if ((optarg) && (optarg[0])) {
-            if (!(err = on_set_next_track_option(optarg, optind, argc, argv, env))) {
-                if (!(err = on_next_track_option_set(optarg, optind, argc, argv, env))) {
-                } else {
-                }
+        if (!(err = on_set_next_track_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_next_track_option_set(optarg, optind, argc, argv, env))) {
             } else {
             }
         } else {
@@ -197,11 +194,8 @@ protected:
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
-        if ((optarg) && (optarg[0])) {
-            if (!(err = on_set_previous_track_option(optarg, optind, argc, argv, env))) {
-                if (!(err = on_previous_track_option_set(optarg, optind, argc, argv, env))) {
-                } else {
-                }
+        if (!(err = on_set_previous_track_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_previous_track_option_set(optarg, optind, argc, argv, env))) {
             } else {
             }
         } else {
@@ -235,11 +229,8 @@ protected:
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
-        if ((optarg) && (optarg[0])) {
-            if (!(err = on_set_track_option(optarg, optind, argc, argv, env))) {
-                if (!(err = on_track_option_set(optarg, optind, argc, argv, env))) {
-                } else {
-                }
+        if (!(err = on_set_track_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_track_option_set(optarg, optind, argc, argv, env))) {
             } else {
             }
         } else {
