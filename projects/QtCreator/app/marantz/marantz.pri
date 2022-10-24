@@ -58,10 +58,6 @@ marantz_HEADERS += \
 $${RETE_SRC}/xos/network/sockets/interfaces.hpp \
 $${RETE_SRC}/xos/network/sockets/os/interfaces.hpp \
 \
-$${RETE_SRC}/xos/app/console/home/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/audio/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/player/main_opt.hpp \
-\
 $${RETE_SRC}/xos/app/console/network/base/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/network/base/main.hpp \
 $${RETE_SRC}/xos/app/console/network/client/main_opt.hpp \
@@ -82,6 +78,9 @@ $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/client/main_opt.hpp
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/client/main.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/server/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/telnet/server/main.hpp \
+\
+$${RETE_SRC}/xos/app/console/home/base/main_opt.hpp \
+$${RETE_SRC}/xos/app/console/home/audio/main_opt.hpp \
 \
 $${RETE_SRC}/xos/app/console/home/theater/marantz/audio/base/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/home/theater/marantz/audio/base/main.hpp \
