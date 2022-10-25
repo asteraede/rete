@@ -54,6 +54,8 @@ public:
     /// constructor / destructor
     maint()
     : run_(0),
+      cd_input_("SICD"), dvd_input_("SIDVD"), bd_input_("SIBD"), select_input_("SI"), input_("SI?"),
+      surround_sound_("MSDOLBY DIGITAL"), stereo_sound_("MSSTEREO"), select_sound_("MS"), sound_("MS?"),
       volume_up_("MVUP"), volume_down_("MVDOWN"), volume_level_("MV"), volume_("MV?"),
       power_off_("PWSTANDBY"), power_on_("PWON"), power_state_("PW"), power_("PW?") {
     }
@@ -77,6 +79,110 @@ protected:
             err = (this->*run_)(argc, argv, env);
         } else {
             err = extends::run(argc, argv, env);
+        }
+        return err;
+    }
+
+    //// ...cd_input_option...
+    virtual int on_set_cd_input_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->cd_input_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...dvd_input_option...
+    virtual int on_set_dvd_input_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->dvd_input_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...bd_input_option...
+    virtual int on_set_bd_input_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->bd_input_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...input_option...
+    virtual int on_set_input_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            const char_t* null_optarg = 0;
+            string_t opt(optarg);
+            if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_CD))) {
+                return on_set_cd_input_option(null_optarg, optind, argc, argv, env);
+            } else {
+                if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_DVD))) {
+                    return on_set_dvd_input_option(null_optarg, optind, argc, argv, env);
+                } else {
+                    if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_BD))) {
+                        return on_set_bd_input_option(null_optarg, optind, argc, argv, env);
+                    } else {
+                    }
+                }
+            }
+            request.assign(this->select_input_);
+        } else {
+            request.assign(this->input_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+
+    //// ...surround_sound_option...
+    virtual int on_set_surround_sound_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->surround_sound_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...stereo_sound_option...
+    virtual int on_set_stereo_sound_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->stereo_sound_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...sound_option...
+    virtual int on_set_sound_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            const char_t* null_optarg = 0;
+            string_t opt(optarg);
+            if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_STEREO))) {
+                return on_set_stereo_sound_option(null_optarg, optind, argc, argv, env);
+            } else {
+                if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_SURROUND))) {
+                    return on_set_surround_sound_option(null_optarg, optind, argc, argv, env);
+                } else {
+                }
+            }
+            request.assign(this->select_sound_);
+        } else {
+            request.assign(this->sound_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
         }
         return err;
     }
@@ -158,6 +264,8 @@ protected:
     }
 
 protected:
+    string_t cd_input_, dvd_input_, bd_input_, select_input_, input_;
+    string_t surround_sound_, stereo_sound_, select_sound_, sound_;
     string_t volume_up_, volume_down_, volume_level_, volume_;
     string_t power_off_, power_on_, power_state_, power_;
 }; /// class maint

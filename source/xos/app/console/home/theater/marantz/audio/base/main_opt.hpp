@@ -23,10 +23,50 @@
 
 #include "xos/app/console/network/sockets/protocol/telnet/base/main.hpp"
 
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPT "input"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_RESULT 0
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_CD "cd"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_DVD "dvd"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_BD "bd"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG "[{ " \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_CD " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_DVD " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_BD " | ... }]"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTUSE "input source"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTVAL_S "I::"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTVAL_C 'I'
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTION \
+   {XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPT, \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_REQUIRED, \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG_RESULT, \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTVAL_C}, \
+
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPT "sound"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_RESULT 0
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_STEREO "stereo"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_SURROUND "surround"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG "[{ " \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_STEREO " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_SURROUND " | ... }]"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTUSE "sound mode"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTVAL_S "S::"
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTVAL_C 'S'
+#define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTION \
+   {XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPT, \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_REQUIRED, \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG_RESULT, \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTVAL_C}, \
+
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_BASE_MAIN_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTVAL_S \
 
 #define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTION \
+    XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTION \
 
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_BASE_MAIN_OPTIONS_CHARS \
@@ -97,12 +137,90 @@ protected:
         return err;
     }
 
+    /// ...input_option...
+    virtual int on_set_input_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_input_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_input_option
+    (int optval, const char_t* optarg, const char_t* optname,
+     int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = on_set_input_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_input_option_set(optarg, optind, argc, argv, env))) {
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    virtual const char_t* input_option_usage(const char_t*& optarg, const struct option* longopt) {
+        const char_t* chars = XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTUSE;
+        optarg = XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTARG;
+        return chars;
+    }
+
+    /// ...sound_option...
+    virtual int on_set_sound_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_sound_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_sound_option
+    (int optval, const char_t* optarg, const char_t* optname,
+     int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = on_set_sound_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_sound_option_set(optarg, optind, argc, argv, env))) {
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    virtual const char_t* sound_option_usage(const char_t*& optarg, const struct option* longopt) {
+        const char_t* chars = XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTUSE;
+        optarg = XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTARG;
+        return chars;
+    }
+
     /// ...option...
     virtual int on_option
     (int optval, const char_t* optarg, const char_t* optname,
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
         switch(optval) {
+
+        case XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTVAL_C:
+            err = this->on_input_option(optval, optarg, optname, optind, argc, argv, env);
+            break;
+        case XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTVAL_C:
+            err = this->on_sound_option(optval, optarg, optname, optind, argc, argv, env);
+            break;
+
         default:
             err = extends::on_option(optval, optarg, optname, optind, argc, argv, env);
         }
@@ -111,6 +229,14 @@ protected:
     virtual const char_t* option_usage(const char_t*& optarg, const struct option* longopt) {
         const char_t* chars = "";
         switch(longopt->val) {
+
+        case XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_INPUT_OPTVAL_C:
+            chars = this->input_option_usage(optarg, longopt);
+            break;
+        case XOS_APP_CONSOLE_HOME_THEATER_MARANTZ_AUDIO_MAIN_SOUND_OPTVAL_C:
+            chars = this->sound_option_usage(optarg, longopt);
+            break;
+
         default:
             chars = extends::option_usage(optarg, longopt);
             break;
