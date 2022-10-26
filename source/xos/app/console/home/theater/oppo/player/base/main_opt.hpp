@@ -23,6 +23,44 @@
 
 #include "xos/app/console/network/sockets/protocol/telnet/base/main.hpp"
 
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPT "input-source"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_RESULT 0
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_BRAY "bray"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_HDMI "hdmi"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG "[{ " \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_BRAY " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_HDMI " | ... }]"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTUSE "input source"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTVAL_S "I::"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTVAL_C 'I'
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTION \
+   {XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPT, \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_REQUIRED, \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_RESULT, \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTVAL_C}, \
+
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPT "repeat-play"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_OPTIONAL
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_RESULT 0
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_ALL "all"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_OFF "off"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_RANDOM "random"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_SHUFFLE "shuffle"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG "[{ " \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_ALL " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_OFF " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_RANDOM " | " \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_SHUFFLE " | ... }]"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTUSE "repeat play"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTVAL_S "R::"
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTVAL_C 'R'
+#define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTION \
+   {XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPT, \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_REQUIRED, \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_RESULT, \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTVAL_C}, \
+
 namespace xos {
 namespace app {
 namespace console {
@@ -76,6 +114,76 @@ protected:
             err = extends::run(argc, argv, env);
         }
         return err;
+    }
+
+    /// ...input_source_option...
+    virtual int on_set_input_source_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_input_source_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_input_source_option
+    (int optval, const char_t* optarg, const char_t* optname,
+     int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = on_set_input_source_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_input_source_option_set(optarg, optind, argc, argv, env))) {
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    virtual const char_t* input_source_option_usage(const char_t*& optarg, const struct option* longopt) {
+        const char_t* chars = XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTUSE;
+        optarg = XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG;
+        return chars;
+    }
+
+    /// ...repeat_play_option...
+    virtual int on_set_repeat_play_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_repeat_play_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+        } else {
+        }
+        return err;
+    }
+    virtual int on_repeat_play_option
+    (int optval, const char_t* optarg, const char_t* optname,
+     int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = on_set_repeat_play_option(optarg, optind, argc, argv, env))) {
+            if (!(err = on_repeat_play_option_set(optarg, optind, argc, argv, env))) {
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    virtual const char_t* repeat_play_option_usage(const char_t*& optarg, const struct option* longopt) {
+        const char_t* chars = XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTUSE;
+        optarg = XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG;
+        return chars;
     }
 
 protected:

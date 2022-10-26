@@ -54,8 +54,12 @@ public:
     /// constructor / destructor
     maint()
     : run_(0),
-      next_track_("#NXT"), previous_track_("#PRE"), track_("#QTK"),
-      start_play_("#PLA"), stop_play_("#STP"), pause_play_("#PAU"), play_("#QPL"),
+      open_tray_("#EJT OPEN"), close_tray_("#EJT CLOSE"), toggle_tray_("#EJT "), tray_("#EJT"),
+      bray_input_("#SIS 0"), hdmi_input_("#SIS 1"), select_input_("#SIS "), input_("#QIS"),
+      replay_all_("SRP ALL"), replay_off_("SRP OFF"), replay_shuffle_("SRP SHF"), 
+      replay_random_("SRP RND"), replay_select_("SRP "), replay_("QSRP"),
+      next_track_("#NXT"), previous_track_("#PRE"), select_track_("#STC "), track_("#QTK"),
+      start_play_("#PLA"), stop_play_("#STP"), pause_play_("#PAU"), resume_play_("#PLA"), play_("#QPL"),
       power_off_("#POF"), power_on_("#PON"), power_toggle_("#POW"), power_("#QPW") {
     }
     virtual ~maint() {
@@ -78,6 +82,92 @@ protected:
             err = (this->*run_)(argc, argv, env);
         } else {
             err = extends::run(argc, argv, env);
+        }
+        return err;
+    }
+
+    /// ...bray_input_source_option...
+    virtual int on_set_bray_input_source_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->bray_input_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...hdmi_input_source_option...
+    virtual int on_set_hdmi_input_source_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->hdmi_input_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...input_source_option...
+    virtual int on_set_input_source_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            const char_t* null_optarg = 0;
+            string_t opt(optarg);
+            if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_BRAY))) {
+                return this->on_set_bray_input_source_option(null_optarg, optind, argc, argv, env);
+            } else {
+                if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTARG_HDMI))) {
+                    return this->on_set_hdmi_input_source_option(null_optarg, optind, argc, argv, env);
+                } else {
+                }
+            }
+            request.assign(this->select_input_);
+        } else {
+            request.assign(this->input_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+
+    /// ...start_play_option...
+    virtual int on_set_start_play_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->start_play_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...stop_play_option...
+    virtual int on_set_stop_play_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->stop_play_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...pause_play_option...
+    virtual int on_set_pause_play_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->pause_play_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...resume_play_option...
+    virtual int on_set_resume_play_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->resume_play_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
         }
         return err;
     }
@@ -158,8 +248,11 @@ protected:
     }
 
 protected:
-    string_t next_track_, previous_track_, track_;
-    string_t start_play_, stop_play_, pause_play_, play_;
+    string_t open_tray_, close_tray_, toggle_tray_, tray_;
+    string_t bray_input_, hdmi_input_, select_input_, input_;
+    string_t replay_all_, replay_off_, replay_shuffle_, replay_random_, replay_select_, replay_;
+    string_t next_track_, previous_track_, select_track_,track_;
+    string_t start_play_, stop_play_, pause_play_, resume_play_, play_;
     string_t power_off_, power_on_, power_toggle_, power_;
 }; /// class maint
 typedef maint<> main;

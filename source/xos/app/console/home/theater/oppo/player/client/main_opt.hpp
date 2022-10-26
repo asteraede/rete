@@ -27,20 +27,16 @@
 
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_CHARS_EXTEND \
-    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTVAL_S \
-    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTVAL_S \
-    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTVAL_S \
-    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_ON_OPTVAL_S \
-    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OFF_OPTVAL_S \
-    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTVAL_S \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_OPTIONS_CHARS_EXTEND \
 
 #define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_OPTIONS_EXTEND \
-    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_NEXT_TRACK_OPTION \
-    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_PREVIOUS_TRACK_OPTION \
-    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_TRACK_OPTION \
-    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_ON_OPTION \
-    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OFF_OPTION \
-    XOS_APP_CONSOLE_HOME_BASE_MAIN_POWER_OPTION \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTION \
+    XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTION \
+    XOS_APP_CONSOLE_HOME_PLAYER_MAIN_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_HOME_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
 
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_CLIENT_MAIN_OPTIONS_CHARS \
@@ -121,6 +117,14 @@ protected:
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
         switch(optval) {
+
+        case XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTVAL_C:
+            err = this->on_input_source_option(optval, optarg, optname, optind, argc, argv, env);
+            break;
+        case XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTVAL_C:
+            err = this->on_repeat_play_option(optval, optarg, optname, optind, argc, argv, env);
+            break;
+
         default:
             err = extends::on_option(optval, optarg, optname, optind, argc, argv, env);
         }
@@ -129,6 +133,14 @@ protected:
     virtual const char_t* option_usage(const char_t*& optarg, const struct option* longopt) {
         const char_t* chars = "";
         switch(longopt->val) {
+
+        case XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_INPUT_SOURCE_OPTVAL_C:
+            chars = this->input_source_option_usage(optarg, longopt);
+            break;
+        case XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTVAL_C:
+            chars = this->repeat_play_option_usage(optarg, longopt);
+            break;
+
         default:
             chars = extends::option_usage(optarg, longopt);
             break;
