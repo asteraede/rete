@@ -56,8 +56,8 @@ public:
     : run_(0),
       open_tray_("#EJT OPEN"), close_tray_("#EJT CLOSE"), toggle_tray_("#EJT "), tray_("#EJT"),
       bray_input_("#SIS 0"), hdmi_input_("#SIS 1"), select_input_("#SIS "), input_("#QIS"),
-      replay_all_("SRP ALL"), replay_off_("SRP OFF"), replay_shuffle_("SRP SHF"), 
-      replay_random_("SRP RND"), replay_select_("SRP "), replay_("QSRP"),
+      replay_all_("#SRP ALL"), replay_off_("#SRP OFF"), replay_shuffle_("#SRP SHF"), 
+      replay_random_("#SRP RND"), replay_select_("#SRP "), replay_("#QSRP"),
       next_track_("#NXT"), previous_track_("#PRE"), select_track_("#STC "), track_("#QTK"),
       start_play_("#PLA"), stop_play_("#STP"), pause_play_("#PAU"), resume_play_("#PLA"), play_("#QPL"),
       power_off_("#POF"), power_on_("#PON"), power_toggle_("#POW"), power_("#QPW") {
@@ -125,6 +125,79 @@ protected:
             request.assign(this->select_input_);
         } else {
             request.assign(this->input_);
+        }
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+
+    /// ...repeat_play_all_option...
+    virtual int on_set_repeat_play_all_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->replay_all_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...repeat_play_off_option...
+    virtual int on_set_repeat_play_off_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->replay_off_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...repeat_play_random_option...
+    virtual int on_set_repeat_play_random_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->replay_random_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...repeat_play_shuffle_option...
+    virtual int on_set_repeat_play_shuffle_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        request.assign(this->replay_shuffle_);
+        if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
+        }
+        return err;
+    }
+    /// ...repeat_play_option...
+    virtual int on_set_repeat_play_option
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        string_t& request = this->request();
+        if ((optarg) && (optarg[0])) {
+            const char_t* null_optarg = 0;
+            string_t opt(optarg);
+            if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_ALL))) {
+                return this->on_set_repeat_play_all_option(null_optarg, optind, argc, argv, env);
+            } else {
+                if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_OFF))) {
+                    return this->on_set_repeat_play_off_option(null_optarg, optind, argc, argv, env);
+                } else {
+                    if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_RANDOM))) {
+                        return this->on_set_repeat_play_random_option(null_optarg, optind, argc, argv, env);
+                    } else {
+                        if ((0 == opt.uncased_compare(XOS_APP_CONSOLE_HOME_THEATER_OPPO_PLAYER_MAIN_REPEAT_PLAY_OPTARG_SHUFFLE))) {
+                            return this->on_set_repeat_play_shuffle_option(null_optarg, optind, argc, argv, env);
+                        } else {
+                        }
+                    }
+                }
+            }
+            request.assign(this->replay_select_);
+        } else {
+            request.assign(this->replay_);
         }
         if (!(err = this->on_set_request_optarg(request, optarg, optind, argc, argv, env))) {
         }
