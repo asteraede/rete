@@ -13,68 +13,68 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: kasa.pri
+#   File: control.pri
 #
 # Author: $author$
-#   Date: 11/22/2022
+#   Date: 12/1/2022
 #
-# generic QtCreator project .pri file for framework rete executable kasa
+# generic QtCreator project .pri file for framework rete executable control
 ########################################################################
 
 ########################################################################
-# kasa
+# control
 
-# kasa TARGET
+# control TARGET
 #
-kasa_TARGET = kasa
+control_TARGET = control
 
-# kasa INCLUDEPATH
+# control INCLUDEPATH
 #
-kasa_INCLUDEPATH += \
+control_INCLUDEPATH += \
 $${rete_INCLUDEPATH} \
 
-# kasa DEFINES
+# control DEFINES
 #
-kasa_DEFINES += \
+control_DEFINES += \
 $${rete_DEFINES} \
 DEFAULT_LOGGING_LEVELS_ERROR \
 XOS_CONSOLE_MAIN_MAIN \
 
 ########################################################################
-# kasa OBJECTIVE_HEADERS
+# control OBJECTIVE_HEADERS
 #
-#kasa_OBJECTIVE_HEADERS += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hh \
+#control_OBJECTIVE_HEADERS += \
+#$${RETE_SRC}/xos/app/console/control/main.hh \
 
-# kasa OBJECTIVE_SOURCES
+# control OBJECTIVE_SOURCES
 #
-#kasa_OBJECTIVE_SOURCES += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.mm \
-
-########################################################################
-# kasa HEADERS
-#
-kasa_HEADERS += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.hpp \
-
-# kasa SOURCES
-#
-kasa_SOURCES += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.cpp \
+#control_OBJECTIVE_SOURCES += \
+#$${RETE_SRC}/xos/app/console/control/main.mm \
 
 ########################################################################
-# kasa FRAMEWORKS
+# control HEADERS
 #
-kasa_FRAMEWORKS += \
+control_HEADERS += \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/base/main_opt.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/base/main.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main_opt.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main.hpp \
+
+# control SOURCES
+#
+control_SOURCES += \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main_opt.cpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main.cpp \
+
+########################################################################
+# control FRAMEWORKS
+#
+control_FRAMEWORKS += \
 $${rete_FRAMEWORKS} \
 
-# kasa LIBS
+# control LIBS
 #
-kasa_LIBS += \
+control_LIBS += \
 $${rete_LIBS} \
 
 ########################################################################

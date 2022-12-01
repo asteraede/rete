@@ -13,71 +13,70 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: kasa.pri
+#   File: control.pro
 #
 # Author: $author$
-#   Date: 11/22/2022
+#   Date: 12/1/2022
 #
-# generic QtCreator project .pri file for framework rete executable kasa
+# os specific QtCreator project .pro file for framework rete executable control
 ########################################################################
-
-########################################################################
-# kasa
-
-# kasa TARGET
 #
-kasa_TARGET = kasa
-
-# kasa INCLUDEPATH
+# Debug: rete/build/os/QtCreator/Debug/bin/control
+# Release: rete/build/os/QtCreator/Release/bin/control
+# Profile: rete/build/os/QtCreator/Profile/bin/control
 #
-kasa_INCLUDEPATH += \
-$${rete_INCLUDEPATH} \
+include(../../../../../build/QtCreator/rete.pri)
+include(../../../../QtCreator/rete.pri)
+include(../../rete.pri)
+include(../../../../QtCreator/app/control/control.pri)
 
-# kasa DEFINES
-#
-kasa_DEFINES += \
-$${rete_DEFINES} \
-DEFAULT_LOGGING_LEVELS_ERROR \
-XOS_CONSOLE_MAIN_MAIN \
+TARGET = $${control_TARGET}
 
 ########################################################################
-# kasa OBJECTIVE_HEADERS
+# INCLUDEPATH
 #
-#kasa_OBJECTIVE_HEADERS += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hh \
+INCLUDEPATH += \
+$${control_INCLUDEPATH} \
 
-# kasa OBJECTIVE_SOURCES
-#
-#kasa_OBJECTIVE_SOURCES += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.mm \
-
-########################################################################
-# kasa HEADERS
-#
-kasa_HEADERS += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.hpp \
-
-# kasa SOURCES
-#
-kasa_SOURCES += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.cpp \
+# DEFINES
+# 
+DEFINES += \
+$${control_DEFINES} \
 
 ########################################################################
-# kasa FRAMEWORKS
+# OBJECTIVE_HEADERS
 #
-kasa_FRAMEWORKS += \
-$${rete_FRAMEWORKS} \
+OBJECTIVE_HEADERS += \
+$${control_OBJECTIVE_HEADERS} \
 
-# kasa LIBS
+# OBJECTIVE_SOURCES
 #
-kasa_LIBS += \
-$${rete_LIBS} \
+OBJECTIVE_SOURCES += \
+$${control_OBJECTIVE_SOURCES} \
 
 ########################################################################
-# NO Qt
-QT -= gui core
+# HEADERS
+#
+HEADERS += \
+$${control_HEADERS} \
+$${control_OBJECTIVE_HEADERS} \
+
+# SOURCES
+#
+SOURCES += \
+$${control_SOURCES} \
+
+########################################################################
+# FRAMEWORKS
+#
+FRAMEWORKS += \
+$${control_FRAMEWORKS} \
+
+# LIBS
+#
+LIBS += \
+$${control_LIBS} \
+$${FRAMEWORKS} \
+
+########################################################################
 

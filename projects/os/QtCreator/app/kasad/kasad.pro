@@ -13,71 +13,70 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: kasa.pri
+#   File: kasad.pro
 #
 # Author: $author$
-#   Date: 11/22/2022
+#   Date: 11/23/2022
 #
-# generic QtCreator project .pri file for framework rete executable kasa
+# os specific QtCreator project .pro file for framework rete executable kasad
 ########################################################################
-
-########################################################################
-# kasa
-
-# kasa TARGET
 #
-kasa_TARGET = kasa
-
-# kasa INCLUDEPATH
+# Debug: rete/build/os/QtCreator/Debug/bin/kasad
+# Release: rete/build/os/QtCreator/Release/bin/kasad
+# Profile: rete/build/os/QtCreator/Profile/bin/kasad
 #
-kasa_INCLUDEPATH += \
-$${rete_INCLUDEPATH} \
+include(../../../../../build/QtCreator/rete.pri)
+include(../../../../QtCreator/rete.pri)
+include(../../rete.pri)
+include(../../../../QtCreator/app/kasad/kasad.pri)
 
-# kasa DEFINES
-#
-kasa_DEFINES += \
-$${rete_DEFINES} \
-DEFAULT_LOGGING_LEVELS_ERROR \
-XOS_CONSOLE_MAIN_MAIN \
+TARGET = $${kasad_TARGET}
 
 ########################################################################
-# kasa OBJECTIVE_HEADERS
+# INCLUDEPATH
 #
-#kasa_OBJECTIVE_HEADERS += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hh \
+INCLUDEPATH += \
+$${kasad_INCLUDEPATH} \
 
-# kasa OBJECTIVE_SOURCES
-#
-#kasa_OBJECTIVE_SOURCES += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.mm \
-
-########################################################################
-# kasa HEADERS
-#
-kasa_HEADERS += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.hpp \
-
-# kasa SOURCES
-#
-kasa_SOURCES += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.cpp \
+# DEFINES
+# 
+DEFINES += \
+$${kasad_DEFINES} \
 
 ########################################################################
-# kasa FRAMEWORKS
+# OBJECTIVE_HEADERS
 #
-kasa_FRAMEWORKS += \
-$${rete_FRAMEWORKS} \
+OBJECTIVE_HEADERS += \
+$${kasad_OBJECTIVE_HEADERS} \
 
-# kasa LIBS
+# OBJECTIVE_SOURCES
 #
-kasa_LIBS += \
-$${rete_LIBS} \
+OBJECTIVE_SOURCES += \
+$${kasad_OBJECTIVE_SOURCES} \
 
 ########################################################################
-# NO Qt
-QT -= gui core
+# HEADERS
+#
+HEADERS += \
+$${kasad_HEADERS} \
+$${kasad_OBJECTIVE_HEADERS} \
+
+# SOURCES
+#
+SOURCES += \
+$${kasad_SOURCES} \
+
+########################################################################
+# FRAMEWORKS
+#
+FRAMEWORKS += \
+$${kasad_FRAMEWORKS} \
+
+# LIBS
+#
+LIBS += \
+$${kasad_LIBS} \
+$${FRAMEWORKS} \
+
+########################################################################
 

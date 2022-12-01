@@ -13,68 +13,68 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: kasa.pri
+#   File: kasad.pri
 #
 # Author: $author$
-#   Date: 11/22/2022
+#   Date: 11/23/2022
 #
-# generic QtCreator project .pri file for framework rete executable kasa
+# generic QtCreator project .pri file for framework rete executable kasad
 ########################################################################
 
 ########################################################################
-# kasa
+# kasad
 
-# kasa TARGET
+# kasad TARGET
 #
-kasa_TARGET = kasa
+kasad_TARGET = kasad
 
-# kasa INCLUDEPATH
+# kasad INCLUDEPATH
 #
-kasa_INCLUDEPATH += \
+kasad_INCLUDEPATH += \
 $${rete_INCLUDEPATH} \
 
-# kasa DEFINES
+# kasad DEFINES
 #
-kasa_DEFINES += \
+kasad_DEFINES += \
 $${rete_DEFINES} \
 DEFAULT_LOGGING_LEVELS_ERROR \
 XOS_CONSOLE_MAIN_MAIN \
 
 ########################################################################
-# kasa OBJECTIVE_HEADERS
+# kasad OBJECTIVE_HEADERS
 #
-#kasa_OBJECTIVE_HEADERS += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hh \
+#kasad_OBJECTIVE_HEADERS += \
+#$${RETE_SRC}/xos/app/console/home/control/kasa/server/main.hh \
 
-# kasa OBJECTIVE_SOURCES
+# kasad OBJECTIVE_SOURCES
 #
-#kasa_OBJECTIVE_SOURCES += \
-#$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.mm \
+#kasad_OBJECTIVE_SOURCES += \
+#$${RETE_SRC}/xos/app/console/home/control/kasa/server/main.mm \
 
 ########################################################################
-# kasa HEADERS
+# kasad HEADERS
 #
-kasa_HEADERS += \
+kasad_HEADERS += \
 $${RETE_SRC}/xos/app/console/home/control/kasa/base/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.hpp \
+$${RETE_SRC}/xos/app/console/home/control/kasa/server/main_opt.hpp \
+$${RETE_SRC}/xos/app/console/home/control/kasa/server/main.hpp \
 
-# kasa SOURCES
+# kasad SOURCES
 #
-kasa_SOURCES += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.cpp \
+kasad_SOURCES += \
+$${RETE_SRC}/xos/app/console/home/control/kasa/server/main_opt.cpp \
+$${RETE_SRC}/xos/app/console/home/control/kasa/server/main.cpp \
 
 ########################################################################
-# kasa FRAMEWORKS
+# kasad FRAMEWORKS
 #
-kasa_FRAMEWORKS += \
+kasad_FRAMEWORKS += \
 $${rete_FRAMEWORKS} \
 
-# kasa LIBS
+# kasad LIBS
 #
-kasa_LIBS += \
+kasad_LIBS += \
 $${rete_LIBS} \
 
 ########################################################################
