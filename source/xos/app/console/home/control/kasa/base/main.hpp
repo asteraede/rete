@@ -81,21 +81,6 @@ protected:
         return err;
     }
 
-    /// ...send_request
-    virtual int before_send_request
-    (xos::network::sockets::interface& cn, string_t& request, int argc, char_t** argv, char_t**env) {
-        int err = 0;
-        size_t length = 0;
-        const char_t* chars = 0;
-        string_t &plain_text = this->request(), 
-                 &encrypt_text = this->encrypt_text(plain_text);
-        
-        if ((chars = encrypt_text.has_chars(length))) {
-            request.assign(chars, length);
-        }
-        return err;
-    }
-
     /// ...power_on_option...
     virtual int on_set_power_on_option
     (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
