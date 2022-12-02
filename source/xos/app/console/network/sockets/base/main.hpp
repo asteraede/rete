@@ -614,6 +614,21 @@ protected:
     ///
     /// recv
     /// ...
+    /// recv_before_lf...
+    /// ...<lf>
+    virtual int recv_before_lf(string_t& r, char_t& c, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t**env) {
+        int err = 0;
+        ssize_t amount = 0;
+        while (0 < (amount = cn.recv(&c, 1))) {
+            switch (c) {
+            case '\n':
+                return err = 0;
+            default:
+                r.append(&c, 1);
+            }
+        }
+        return err;
+    }
     /// recv_lf...
     /// ...<lf>
     virtual int recv_lf(string_t& r, char_t& c, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t**env) {
@@ -624,6 +639,21 @@ protected:
             switch (c) {
             case '\n':
                 return err = 0;
+            }
+        }
+        return err;
+    }
+    /// recv_before_cr...
+    /// ...<cr>
+    virtual int recv_before_cr(string_t& r, char_t& c, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t**env) {
+        int err = 0;
+        ssize_t amount = 0;
+        while (0 < (amount = cn.recv(&c, 1))) {
+            switch (c) {
+            case '\r':
+                return err = 0;
+            default:
+                r.append(&c, 1);
             }
         }
         return err;

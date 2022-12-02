@@ -79,6 +79,34 @@ protected:
         return err;
     }
 
+    /// ...process_request
+    virtual int process_request(string_t& request, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        size_t length = 0;
+        const char_t* chars = 0;
+
+        if ((chars = request.has_chars(length))) {
+            string_t &response = this->response();
+            
+            if (!(err = this->all_prepare_response_from_request(response, request, argc, argv, env))) {
+            } else {
+            }
+        }
+        return err;
+    }
+
+    /// ...system...
+    virtual bool& set_system_restart(const bool to = true) {
+        bool& system_restart = extends::set_system_restart(to);
+        this->set_accept_restart(system_restart);
+        return system_restart;
+    }
+    virtual bool& set_system_stop(const bool to = true) {
+        bool& system_stop = extends::set_system_stop(to);
+        this->set_accept_done(system_stop);
+        return system_stop;
+    }
+
 protected:
 }; /// class maint
 typedef maint<> main;

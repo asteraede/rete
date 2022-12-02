@@ -31,7 +31,7 @@
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_RELAY_PORT \
     XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_CONNECT_PORT
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_ENDOF_REQUEST "\n\r\n\r\n"
+#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_ENDOF_MESSAGE "\n\r\n\r\n"
 
 namespace xos {
 namespace app {
@@ -68,7 +68,7 @@ public:
       accept_port_(XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_ACCEPT_PORT), 
       connect_port_(XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_CONNECT_PORT),
       relay_port_(XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_RELAY_PORT),
-      endof_request_(XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_ENDOF_REQUEST) {
+      endof_message_(XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_HOME_CONTROL_ENDOF_MESSAGE) {
     }
     virtual ~maint() {
     }
@@ -148,30 +148,36 @@ protected:
     /// ...send_request
     virtual int before_send_request(xos::network::sockets::interface& cn, string_t& request, int argc, char_t** argv, char_t** env) {
         int err = 0;
-        const string_t& endof_request = this->endof_request();
-        request.append(endof_request);
+        const string_t& endof_message = this->endof_message();
+        request.append(endof_message);
         return err;
     }
-
     /// ...recv_request
     virtual int recv_request(string_t& request, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t** env) {
         int err = 0;
         char_t c = 0;
 
         request.clear();
-        if (!(err = this->recv_lf(request, c, cn, argc, argv, env))) {
+        if (!(err = this->recv_before_lf(request, c, cn, argc, argv, env))) {
             err = this->all_process_request(request, cn, argc, argv, env);
         }
         return err;
     }
 
+    /// ...send_response
+    virtual int before_send_response(xos::network::sockets::interface& cn, string_t& response, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        const string_t& endof_message = this->endof_message();
+        response.append(endof_message);
+        return err;
+    }
     /// ...recv_response
     virtual int recv_response(string_t& response, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t** env) {
         int err = 0;
         char_t c = 0;
 
         response.clear();
-        if (!(err = this->recv_lf(response, c, cn, argc, argv, env))) {
+        if (!(err = this->recv_before_lf(response, c, cn, argc, argv, env))) {
             err = this->all_process_response(response, cn, argc, argv, env);
         }
         return err;
@@ -188,18 +194,18 @@ protected:
         return (short&)relay_port_;
     }
 
-    virtual string_t& set_endof_request(const string_t& to) {
-        string_t& endof_request = this->endof_request();
-        endof_request.assign(to);
-        return endof_request;
+    virtual string_t& set_endof_message(const string_t& to) {
+        string_t& endof_message = this->endof_message();
+        endof_message.assign(to);
+        return endof_message;
     }
-    virtual string_t& endof_request() const {
-        return (string_t&)endof_request_;
+    virtual string_t& endof_message() const {
+        return (string_t&)endof_message_;
     }
 
 protected:
     short accept_port_, connect_port_, relay_port_;
-    string_t endof_request_;
+    string_t endof_message_;
 }; /// class maint
 typedef maint<> main;
 
