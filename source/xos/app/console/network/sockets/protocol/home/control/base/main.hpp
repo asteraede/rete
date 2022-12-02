@@ -182,6 +182,17 @@ protected:
         }
         return err;
     }
+    /// ...process_response
+    virtual int process_response(string_t& response, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        size_t length = 0;
+        const char_t* chars = 0;
+
+        if ((chars = response.has_chars(length))) {
+            this->outln(chars, length);
+        }
+        return err;
+    }
 
     /// ...port
     virtual short& accept_port() const {
