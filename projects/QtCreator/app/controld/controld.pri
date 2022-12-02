@@ -13,48 +13,48 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: control.pri
+#   File: controld.pri
 #
 # Author: $author$
 #   Date: 12/1/2022
 #
-# generic QtCreator project .pri file for framework rete executable control
+# generic QtCreator project .pri file for framework rete executable controld
 ########################################################################
 
 ########################################################################
-# control
+# controld
 
-# control TARGET
+# controld TARGET
 #
-control_TARGET = control
+controld_TARGET = controld
 
-# control INCLUDEPATH
+# controld INCLUDEPATH
 #
-control_INCLUDEPATH += \
+controld_INCLUDEPATH += \
 $${rete_INCLUDEPATH} \
 
-# control DEFINES
+# controld DEFINES
 #
-control_DEFINES += \
+controld_DEFINES += \
 $${rete_DEFINES} \
 DEFAULT_LOGGING_LEVELS_ERROR \
 XOS_CONSOLE_MAIN_MAIN \
 
 ########################################################################
-# control OBJECTIVE_HEADERS
+# controld OBJECTIVE_HEADERS
 #
-#control_OBJECTIVE_HEADERS += \
-#$${RETE_SRC}/xos/app/console/control/main.hh \
+#controld_OBJECTIVE_HEADERS += \
+#$${RETE_SRC}/xos/app/console/controld/main.hh \
 
-# control OBJECTIVE_SOURCES
+# controld OBJECTIVE_SOURCES
 #
-#control_OBJECTIVE_SOURCES += \
-#$${RETE_SRC}/xos/app/console/control/main.mm \
+#controld_OBJECTIVE_SOURCES += \
+#$${RETE_SRC}/xos/app/console/controld/main.mm \
 
 ########################################################################
-# control HEADERS
+# controld HEADERS
 #
-control_HEADERS += \
+controld_HEADERS += \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/base/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/base/main.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main_opt.hpp \
@@ -62,21 +62,21 @@ $${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main.h
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/server/main_opt.hpp \
 $${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/server/main.hpp \
 
-# control SOURCES
+# controld SOURCES
 #
-control_SOURCES += \
-$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/client/main.cpp \
+controld_SOURCES += \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/server/main_opt.cpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/server/main.cpp \
 
 ########################################################################
-# control FRAMEWORKS
+# controld FRAMEWORKS
 #
-control_FRAMEWORKS += \
+controld_FRAMEWORKS += \
 $${rete_FRAMEWORKS} \
 
-# control LIBS
+# controld LIBS
 #
-control_LIBS += \
+controld_LIBS += \
 $${rete_LIBS} \
 
 ########################################################################
