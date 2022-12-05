@@ -80,6 +80,107 @@ protected:
         return err;
     }
 
+    /// ...output_request_run
+    virtual int this_all_output_request_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = err = extends::all_output_request_run(argc, argv, env))) {
+        } else {
+        }
+        return err;
+    }
+    virtual int set_output_request_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        run_ = &derives::this_all_output_request_run;
+        return err;
+    }
+    virtual int unset_output_request_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        run_ = 0;
+        return err;
+    }
+
+    /// ...sockets_run
+    virtual int this_all_sockets_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = err = extends::all_sockets_run(argc, argv, env))) {
+        } else {
+        }
+        return err;
+    }
+    virtual int set_sockets_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        run_ = &derives::this_all_sockets_run;
+        return err;
+    }
+    virtual int unset_sockets_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        run_ = 0;
+        return err;
+    }
+
+    /// ...send_request
+    virtual int before_send_request
+    (xos::network::sockets::interface& cn, string_t& request, int argc, char_t** argv, char_t**env) {
+        int err = 0;
+        size_t length = 0;
+        const char_t* chars = 0;
+        const string_t &plain_text = request;
+
+        LOGGER_IS_LOGGED_INFO("(chars = plain_text.has_chars(length))...");
+        if ((chars = plain_text.has_chars(length))) {
+            string_t &encrypt_text = this->encrypt_text(plain_text);
+            
+            LOGGER_IS_LOGGED_INFO("...(chars = plain_text.has_chars(length = " << unsigned_to_string(length) << ")) = \"" << chars << "\"");
+            LOGGER_IS_LOGGED_INFO("(chars = encrypt_text.has_chars(length))...");
+            if ((chars = encrypt_text.has_chars(length))) {
+
+                LOGGER_IS_LOGGED_INFO("...(chars = encrypt_text.has_chars(length = " << unsigned_to_string(length) << "))...");
+                LOGGER_IS_LOGGED_INFO("request.assign(chars, length = " << unsigned_to_string(length) << ")...");
+                request.assign(chars, length);
+            }
+        }
+        return err;
+    }
+
+    /// ...process_response
+    virtual int before_process_response
+    (string_t& response, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t**env) {
+        int err = 0;
+        size_t length = 0;
+        const char_t* chars = 0;
+        const string_t &cipher_text = response;
+
+        LOGGER_IS_LOGGED_INFO("(chars = cipher_text.has_chars(length))...");
+        if ((chars = cipher_text.has_chars(length))) {
+            const string_t& decrypt_text = this->decrypt_text(cipher_text);
+
+            LOGGER_IS_LOGGED_INFO("...(chars = cipher_text.has_chars(length = " << unsigned_to_string(length) << "))");
+            LOGGER_IS_LOGGED_INFO("(chars = decrypt_text.has_chars(length))...");
+            if ((chars = decrypt_text.has_chars(length))) {
+
+                LOGGER_IS_LOGGED_INFO("(chars = decrypt_text.has_chars(length = " << unsigned_to_string(length) << ")) = \"" << chars << "\"");
+                LOGGER_IS_LOGGED_INFO("response.assign(chars, length = " << unsigned_to_string(length) << ")...");
+                response.assign(chars, length);
+                LOGGER_IS_LOGGED_INFO("response.appendln()...");
+                response.appendln();
+            }
+        }
+        return err;
+    }
+
+    /// ...recv_response
+    virtual int recv_response
+    (string_t& response, xos::network::sockets::interface& cn, int argc, char_t** argv, char_t**env) {
+        int err = 0;
+        char_t c = 0;
+
+        response.clear();
+        if (!(err = this->recv_sizeof_sized_crlf2(4, response, c, cn, argc, argv, env))) {
+            err = this->all_process_response(response, cn, argc, argv, env);
+        }
+        return err;
+    }
+
 protected:
 }; /// class maint
 typedef maint<> main;

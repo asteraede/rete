@@ -44,7 +44,7 @@ namespace base {
 
 /// class maint
 template 
-<class TExtends = xos::app::console::network::sockets::protocol::home::control::kasa::base::main_opt, 
+<class TExtends = xos::app::console::network::sockets::protocol::home::control::kasa::base::main_optt<>, 
  class TImplements = typename TExtends::implements>
 
 class exported maint: virtual public TImplements, public TExtends {

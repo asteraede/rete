@@ -36,7 +36,30 @@ namespace client {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::network::sockets::protocol::home::control::kasa::base::main, 
+<class TExtends = xos::app::console::network::sockets::protocol::home::control::kasa::base::maint
+ <xos::app::console::network::sockets::protocol::home::control::kasa::base::main_optt
+ <xos::app::console::protocol::home::control::kasa::client::maint
+ <xos::app::console::protocol::home::control::kasa::client::main_optt
+ <xos::app::console::protocol::home::control::kasa::base::maint
+ <xos::app::console::protocol::home::control::kasa::base::main_optt
+ <xos::app::console::protocol::home::control::client::power_maint
+ <xos::app::console::protocol::home::control::client::power_main_optt
+ <xos::app::console::protocol::home::control::base::power_maint
+ <xos::app::console::protocol::home::control::base::power_main_optt
+ <xos::app::console::client::maint
+ <xos::app::console::client::main_optt
+ <xos::app::console::base::maint
+ <xos::app::console::base::main_optt
+ <xos::app::console::network::sockets::client::maint
+ <xos::app::console::network::sockets::client::main_optt
+ <xos::app::console::network::sockets::base::maint
+ <xos::app::console::network::sockets::base::main_optt
+ <xos::app::console::network::client::maint
+ <xos::app::console::network::client::main_optt
+ <xos::app::console::network::base::maint
+ <xos::app::console::network::base::main_optt
+ <xos::app::console::nadir::version::maint
+ <xos::app::console::nadir::version::main_optt<> > > > > > > > > > > > > > > > > > > > > > > >, 
  class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {
