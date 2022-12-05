@@ -55,16 +55,16 @@ XOS_CONSOLE_MAIN_MAIN \
 # kasa HEADERS
 #
 kasa_HEADERS += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/base/main.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.hpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/kasa/base/main_opt.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/kasa/base/main.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/kasa/client/main_opt.hpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/kasa/client/main.hpp \
 
 # kasa SOURCES
 #
 kasa_SOURCES += \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main_opt.cpp \
-$${RETE_SRC}/xos/app/console/home/control/kasa/client/main.cpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/kasa/client/main_opt.cpp \
+$${RETE_SRC}/xos/app/console/network/sockets/protocol/home/control/kasa/client/main.cpp \
 
 ########################################################################
 # kasa FRAMEWORKS
